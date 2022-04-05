@@ -162,6 +162,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E6%95%B0%E6%8D%AE%E5%BA%93mysql%E5%92%8Cpymysql%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="喝水不要糖">
+      <meta itemprop="description" content="个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="喝水不要糖的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/05/%E6%95%B0%E6%8D%AE%E5%BA%93mysql%E5%92%8Cpymysql%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">数据库mysql和pymysql学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-05 14:39:01 / 修改时间：14:41:44" itemprop="dateCreated datePublished" datetime="2022-04-05T14:39:01+08:00">2022-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="sql"><a href="#sql" class="headerlink" title="sql"></a>sql</h1><p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/exam/oj?tab=SQL%E7%AF%87&topicId=199">sql在线刷题</a></p>
+<ul>
+<li><p>mysql工作常用</p>
+<ul>
+<li><p>– 查看数据库所有表名</p>
+<ul>
+<li>SELECT TABLE_NAME,TABLE_COMMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=’数据库名’;</li>
+</ul>
+</li>
+<li><p>查看表字段名</p>
+<ul>
+<li>select COLUMN_NAME,DATA_TYPE,COLUMN_COMMENT from information_schema.COLUMNS where table_name = ‘表名’ ;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>表操作</p>
+<ul>
+<li><p>创建：drop table if exists tablename;create table tablename(cloumn_name,cloum_type,….);</p>
+</li>
+<li><p>增加字段：alter table tablename add cloumn_name cloumn_type;</p>
+</li>
+</ul>
+</li>
+<li><p>增删改查</p>
+<ul>
+<li><p>增</p>
+<ul>
+<li>insert into table values （v1,v2,v3…）</li>
+</ul>
+</li>
+<li><p>删</p>
+<ul>
+<li><p>delete from table where c=value 删行</p>
+</li>
+<li><p>delete from table/delete * from table 删除表所有数据</p>
+</li>
+<li><p>drop 数据库</p>
+</li>
+</ul>
+</li>
+<li><p>改</p>
+<ul>
+<li>update table set c=value where c2=value (一定要where条件，否则是更新所有行）</li>
+</ul>
+</li>
+<li><p>查</p>
+<ul>
+<li>select d1,c2 from table where …</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关键字</p>
+<ul>
+<li><p>distinct</p>
+<ul>
+<li>select distinct c1,c2 from table where c1,c2</li>
+</ul>
+</li>
+<li><p>order by</p>
+<ul>
+<li>select c1 from table where c2=value  order by  c3 asc/desc</li>
+</ul>
+</li>
+<li><p>select 前几行</p>
+<ul>
+<li><p>mysql ：select c1 from table where c2=v order by c3 limit 3</p>
+</li>
+<li><p>oracle: select c from table where rownum &lt;3</p>
+</li>
+</ul>
+</li>
+<li><p>like</p>
+<ul>
+<li><p>select c from table where c2 like ‘test%test’ or c2 like ‘%test%’</p>
+</li>
+<li><p>通配符：</p>
+<ul>
+<li><p>%:替代0个或多个字符 </p>
+</li>
+<li><p>_：替代一个字符 ：‘G_o_le’ 可以匹配 Goole</p>
+</li>
+<li><p>[asdf]：字符列中任意单一字符</p>
+</li>
+<li><p>[!asd] 或者[^asd]:不在字符列的任意单一字符</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>in / not in</p>
+<ul>
+<li>select c1 from table where c2 in (v1,v2..)</li>
+</ul>
+</li>
+<li><p>between/ not between</p>
+<ul>
+<li><p>数值，文本，日期： where  c between v1 and v2</p>
+</li>
+<li><p>between :1 and 20; ‘A ‘and ‘H’;date BETWEEN ‘2016-05-10’ AND ‘2016-05-14’;</p>
+</li>
+<li><p>别名 as</p>
+<ul>
+<li>select coulum as c from table as t where c=value and t.c2=value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>group by having</p>
+<ul>
+<li>select company 公司名称, max(price) from goods group by company having company != ‘并夕夕’;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>函数</p>
+<ul>
+<li>count() max() min ()  avg()</li>
+</ul>
+</li>
+<li><p>多表查询</p>
+<ul>
+<li><p>inner join</p>
+</li>
+<li><p>left join</p>
+</li>
+<li><p>right join </p>
+</li>
+<li><p>outer join </p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="pymsql"><a href="#pymsql" class="headerlink" title="pymsql"></a>pymsql</h1><p>官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://pymysql.readthedocs.io/">Welcome to PyMySQL’s documentation! — PyMySQL 0.7.2 documentation</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/python3/python3-mysql.html">Python3 MySQL 数据库连接 – PyMySQL 驱动 | 菜鸟教程</a></p>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导包</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建连接</span></span><br><span class="line">conn = pymysql.connect(host=<span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">                       port=<span class="number">3306</span>,</span><br><span class="line">                       user=<span class="string">&quot;root&quot;</span>,</span><br><span class="line">                       password=<span class="string">&quot;root&quot;</span>,</span><br><span class="line">                       database=<span class="string">&quot;books&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取游标</span></span><br><span class="line">cursor = conn.cursor()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行sql</span></span><br><span class="line">cursor.execute(<span class="string">&quot;select version()&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3).获取查询结果的总记录数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;获取的查询结果记录行数为：&quot;</span>, cursor.rowcount)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4).获取查询结果的第一条数据</span></span><br><span class="line"><span class="built_in">print</span>(cursor.fetchone())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5).获取全部的查询结果</span></span><br><span class="line"><span class="comment"># 重置游标位置</span></span><br><span class="line">cursor.rownumber = <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(cursor.fetchall())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭游标</span></span><br><span class="line">cursor.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭连接</span></span><br><span class="line">conn.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="实践批量更新字段"><a href="#实践批量更新字段" class="headerlink" title="实践批量更新字段"></a>实践批量更新字段</h2><ul>
+<li>先查找合适的数据：通过多表查询，确认几个字段都没问题的数据的账号，放入一个列表里：ada = [‘59404673’, ‘59404194’, ‘59404411’, ‘59402954’]</li>
+<li>准备好要更新的字段和值和写好占位符的sql语句，通过事务执行更新sql语句。再执行批量select检查是否更新正确</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"><span class="comment">#配置连接信息</span></span><br><span class="line">mysql_host = <span class="string">&#x27;&#x27;</span></span><br><span class="line">user = <span class="string">&#x27;&#x27;</span></span><br><span class="line">password = <span class="string">&#x27;&#x27;</span></span><br><span class="line">db = <span class="string">&#x27;&#x27;</span></span><br><span class="line">port = <span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mysqloperate</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.c1 = pymysql.connect(host=mysql_host, user=user, password=password, database=db, port=port)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.c1.close()</span><br><span class="line">        </span><br><span class="line"><span class="comment">#生成条件查询的sql语句</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sql_generate_select_where</span>(<span class="params">self,select_param1,select_param2,table,where_p,value</span>):</span></span><br><span class="line">        sql=<span class="string">&quot;select &#123;0&#125;,&#123;1&#125; from &#123;2&#125; where &#123;3&#125;=&#123;4&#125;&quot;</span>.<span class="built_in">format</span>(select_param1,select_param2,table,where_p,value)</span><br><span class="line">        <span class="keyword">return</span> sql</span><br><span class="line"></span><br><span class="line">    <span class="comment">#批量检查数据</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">excute_select</span>(<span class="params">self,sql,params</span>):</span></span><br><span class="line">        cursor = self.c1.cursor(cursor=pymysql.cursors.DictCursor)<span class="comment">#以字典形式返回查询数据</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> params:</span><br><span class="line">            cursor.execute(sql,i)</span><br><span class="line">            result = cursor.fetchall()</span><br><span class="line">            <span class="built_in">print</span>(result)</span><br><span class="line">        cursor.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 批量更新字段</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_table1</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment">#准备数据</span></span><br><span class="line">        ada = [<span class="string">&#x27;59404673&#x27;</span>, <span class="string">&#x27;59404194&#x27;</span>, <span class="string">&#x27;59404411&#x27;</span>, <span class="string">&#x27;59402954&#x27;</span>]</span><br><span class="line">        name= [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>]</span><br><span class="line">        placeholder = [<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;&#x27;</span>]</span><br><span class="line">        update_name = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;BS&#x27;</span>]</span><br><span class="line">        update_placeholder = [<span class="string">&#x27;PA&#x27;</span>, <span class="string">&#x27;PB&#x27;</span>, <span class="string">&#x27;PR&#x27;</span>, <span class="string">&#x27;PBS&#x27;</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#写好带占位符的sql语句</span></span><br><span class="line">        sql_update_name_cn = <span class="string">r&quot;update user_info set name =%s where ada=%s;&quot;</span></span><br><span class="line">        sql_update_placeholder = <span class="string">r&quot;update account set placeholder =%s where ada=%s;&quot;</span></span><br><span class="line">        p1=update_name_cn</span><br><span class="line">        p2=update_placeholder</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 创建一个cursor对象</span></span><br><span class="line">        cursor = self.c1.cursor(cursor=pymysql.cursors.DictCursor)</span><br><span class="line">        <span class="comment">#执行更新语句</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ada)):</span><br><span class="line">                cursor.execute(sql_update_name, [p1[i], ada[i]])</span><br><span class="line">                cursor.execute(sql_update_placeholder, [p2[i], ada[i]])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            self.c1.rollback()<span class="comment">#事务回滚</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;failed&#x27;</span>, e)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.c1.commit()<span class="comment">#提交事务</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;sucessed&#x27;</span>, cursor.rowcount)</span><br><span class="line"></span><br><span class="line">        cursor.close()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/25/python+selenium+webUI%E7%99%BB%E5%BD%95%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,10 +390,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-25 17:17:52 / 修改时间：17:15:47" itemprop="dateCreated datePublished" datetime="2022-03-25T17:17:52+08:00">2022-03-25</time>
+              <time title="创建时间：2022-03-25 17:17:52" itemprop="dateCreated datePublished" datetime="2022-03-25T17:17:52+08:00">2022-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-30 21:23:53" itemprop="dateModified" datetime="2022-03-30T21:23:53+08:00">2022-03-30</time>
+              </span>
 
           
 
@@ -201,7 +412,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>实习过程中，主要是测试小程序的注册模块，而注册成功后需要在其他端登录验证。以下就是为了加快PC端登录测试写的UI自动化测试脚本。</p>
+          <p>实习过程中，测试的有注册和修改密码的模块，而注册成功或者修改密码成功后需要在其他端登录验证。以下就是为了加快PC端登录测试写的UI自动化测试脚本。</p>
 <h1 id="登录测试练习"><a href="#登录测试练习" class="headerlink" title="登录测试练习"></a>登录测试练习</h1><h2 id="第一步：简单实现"><a href="#第一步：简单实现" class="headerlink" title="第一步：简单实现"></a>第一步：简单实现</h2><p>先写一个账号登录的脚本，然后升级为从csv文件读取数据批量执行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test_selenium</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 登录pc云购——手机验证码</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login_yungou_phone</span>(<span class="params">self</span>):</span></span><br><span class="line">        f=csv.reader(<span class="built_in">open</span>(<span class="string">&#x27;phonenumber.csv&#x27;</span>,<span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            phonenumber=i</span><br><span class="line">            driver = webdriver.Chrome()</span><br><span class="line">            driver.get(<span class="string">&#x27;xxxx.com/login&#x27;</span>)</span><br><span class="line">            driver.implicitly_wait(<span class="number">5</span>)</span><br><span class="line">            driver.find_element(By.XPATH, <span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[1]/div[2]&#x27;</span>).click()</span><br><span class="line">            input_phonenumber=driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[4]/div[1]/input&#x27;</span>)</span><br><span class="line">            input_phonenumber.send_keys(phonenumber)</span><br><span class="line">            <span class="comment"># 同意用户协议</span></span><br><span class="line">            driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[9]/i&#x27;</span>).click()</span><br><span class="line">            <span class="comment">#获取验证码</span></span><br><span class="line">            driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[4]/div[2]/span[2]&#x27;</span>).click()</span><br><span class="line">            <span class="comment">#输入万能验证码</span></span><br><span class="line">            driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[4]/div[2]/input&#x27;</span>).send_keys(<span class="string">&#x27;966966&#x27;</span>)</span><br><span class="line">            <span class="comment"># 点击登录</span></span><br><span class="line">            driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[10]&#x27;</span>).click()</span><br><span class="line">            time.sleep(<span class="number">3</span>)</span><br><span class="line">            <span class="built_in">print</span>(i,end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="comment">#通过判断点击登录后页面是否跳转来断定是否登录成功</span></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">assert</span> driver.current_url <span class="keyword">in</span> <span class="string">&#x27;xxx.com&#x27;</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;pass&#x27;</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;Assertion test fail.&#x27;</span>, <span class="built_in">format</span>(e))</span><br><span class="line"></span><br><span class="line">            driver.quit()</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 登录pc云购——账号密码</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">login_yungou</span>(<span class="params">self</span>):</span></span><br><span class="line">        f = csv.reader(<span class="built_in">open</span>(<span class="string">&#x27;adaLogin.csv&#x27;</span>, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            <span class="built_in">print</span>(i)</span><br><span class="line">            driver = webdriver.Chrome()</span><br><span class="line">            <span class="comment"># 打开云购登录</span></span><br><span class="line">            driver.get(<span class="string">&#x27;xxx.com/login&#x27;</span>)</span><br><span class="line">            driver.implicitly_wait(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">            ada_phone = i[<span class="number">0</span>]</span><br><span class="line">            password = i[<span class="number">1</span>]</span><br><span class="line">            ada_phone_input = driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[3]/div[1]/input&#x27;</span>)</span><br><span class="line">            ada_phone_input.send_keys(ada_phone)</span><br><span class="line">            password_input = driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[3]/div[2]/input&#x27;</span>)</span><br><span class="line">            password_input.send_keys(password)</span><br><span class="line"></span><br><span class="line">            known_btn = driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[9]/i&#x27;</span>).click()</span><br><span class="line">            login_btn = driver.find_element(By.XPATH,<span class="string">&#x27;/html/body/div[1]/div[1]/div/div/div[2]/div/div[1]/div[10]&#x27;</span>).click()</span><br><span class="line"></span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">assert</span> driver.current_url <span class="keyword">in</span> <span class="string">&#x27;xxx.com&#x27;</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;Assertion test pass.&#x27;</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;Assertion test fail.&#x27;</span>, <span class="built_in">format</span>(e))</span><br><span class="line"></span><br><span class="line">            driver.quit()</span><br><span class="line">            time.sleep(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 
@@ -584,7 +795,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/23/WebUI%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/03/23/WebUI%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">WebUI自动化测试学习</a>
         </h2>
 
         <div class="post-meta">
@@ -593,10 +804,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-23 19:27:24 / 修改时间：20:13:46" itemprop="dateCreated datePublished" datetime="2022-03-23T19:27:24+08:00">2022-03-23</time>
+              <time title="创建时间：2022-03-23 19:27:24" itemprop="dateCreated datePublished" datetime="2022-03-23T19:27:24+08:00">2022-03-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-05 14:42:01" itemprop="dateModified" datetime="2022-04-05T14:42:01+08:00">2022-04-05</time>
+              </span>
 
           
 
@@ -609,19 +826,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<h2 id="title-WebUI自动化测试学习"><a href="#title-WebUI自动化测试学习" class="headerlink" title="title:WebUI自动化测试学习"></a>title:WebUI自动化测试学习</h2><h1 id="一-浏览器插件IDE"><a href="#一-浏览器插件IDE" class="headerlink" title="一.浏览器插件IDE"></a>一.浏览器插件IDE</h1><h2 id="1-Selenium"><a href="#1-Selenium" class="headerlink" title="1.Selenium"></a>1.Selenium</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>添加 浏览器插件扩展 selenuim</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liudinglong1989/article/details/107740061">https://blog.csdn.net/liudinglong1989/article/details/107740061</a></p>
-<h3 id="录制一个测试"><a href="#录制一个测试" class="headerlink" title="录制一个测试"></a>录制一个测试</h3><p>打开录制，然后点点点。点击空白列表添加一项，command选择为断言，target 箭头图标在网页中选择要断言的部分。value是值。</p>
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=ODNkOTk2ODQxN2I0MzFhODMzMzg0ZjBkMTkwMTI5ZTJfYmJsUWhPbm1DUmhPZ2FzWmQwV1NzblZ6S0x5d2ZiQm9fVG9rZW46Ym94Y25PSEVxUnVIejRIS2lvWVVaRGdYNWxiXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGJjNzI0NWIyNGRmY2FjNTM5NjRmNTRjZjJiZGM0YmFfak1OeExSVWFYa2RKcDQzZDVDTnJVVnFBczBicm1vdVdfVG9rZW46Ym94Y25scnNyMkhHUU1vQVZqbmhMSGVXQnpjXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=NGFhNmU4OTk4ZmU3MzA2NWQwNDNjYmEyMWM1ZmRhM2RfalVkTndrMEZwdGpEakdIYURwd0pPMndmejVaMWF2MldfVG9rZW46Ym94Y25ndzd6YkYya1dRNEpVcWJWdjBHeXNnXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<h2 id="2-Katalon"><a href="#2-Katalon" class="headerlink" title="2.Katalon"></a>2.Katalon</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>也是浏览器扩展程序</p>
-<h3 id="录制一个测试-1"><a href="#录制一个测试-1" class="headerlink" title="录制一个测试"></a>录制一个测试</h3><p>与selenium不同的是，selenium会弹出一个浏览器框，而katalon是在当前的浏览器页面进行操作</p>
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=MDQ3NGVkMzIyZDM2M2MxZjZiZjk3YWM5ZTU4ZjAxOGJfVDl5Vm9ERFo3eDgxdUJSWGtGNjJwbzRqdVpzRHFUWkZfVG9rZW46Ym94Y25QaGVOVVFyRUR4QVh1MHRqdzIyc2RkXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<h3 id="导出-1"><a href="#导出-1" class="headerlink" title="导出"></a>导出</h3><p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNhNjE1NzIzYWIwMzAxYTIxZGJhMDAxY2E3ZTQzNjdfR212MTZnTTRiVHIyN254TTFjTWprNFJnNlMzUnVkWlNfVG9rZW46Ym94Y25lZFlzREc5VkdaZ3FYc0kwckYyQ2VmXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<h1 id="二-Python-Selenium"><a href="#二-Python-Selenium" class="headerlink" title="二.Python+Selenium"></a>二.Python+Selenium</h1><p><a target="_blank" rel="noopener" href="https://a2sr71wdj0.feishu.cn/docs/doccnzCA3jRJ1FhswabXt9pgwQd">Python+Selenium练习实践</a> </p>
-<h3 id="1-selenium测试环境搭建"><a href="#1-selenium测试环境搭建" class="headerlink" title="1.selenium测试环境搭建"></a>1.selenium测试环境搭建</h3><ol>
+          <h1 id="Python-Selenium"><a href="#Python-Selenium" class="headerlink" title="Python+Selenium"></a>Python+Selenium</h1><h3 id="1-selenium测试环境搭建"><a href="#1-selenium测试环境搭建" class="headerlink" title="1.selenium测试环境搭建"></a>1.selenium测试环境搭建</h3><ol>
 <li>安装Python3，装Windows版本，配好环境变量。</li>
 <li>用命令行升级一下 pip。</li>
 </ol>
@@ -633,23 +838,18 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">临时使用</span><br><span class="line">pip install <span class="operator">-</span>i https:<span class="operator">/</span><span class="operator">/</span>pypi.tuna.tsinghua.edu.cn<span class="operator">/</span>simple <span class="keyword">some</span><span class="operator">-</span>package</span><br><span class="line"></span><br><span class="line">升级 pip 到最新的版本 (<span class="operator">&gt;=</span><span class="number">10.0</span><span class="number">.0</span>) 后进行配置：</span><br><span class="line">pip install pip <span class="operator">-</span>U</span><br><span class="line">pip config <span class="keyword">set</span> global.index<span class="operator">-</span>url https:<span class="operator">/</span><span class="operator">/</span>pypi.tuna.tsinghua.edu.cn<span class="operator">/</span>simple</span><br><span class="line"><span class="keyword">where</span> python  <span class="operator">/</span><span class="operator">/</span>显示python路径</span><br><span class="line">pip list      <span class="operator">/</span><span class="operator">/</span>显示当前pip版本</span><br><span class="line">python <span class="operator">-</span>m pip install <span class="comment">--upgrade pip  //升级pip</span></span><br><span class="line">pip install selenium    <span class="operator">/</span><span class="operator">/</span>安装第三方库</span><br><span class="line">pip <span class="keyword">show</span> selenium       <span class="operator">/</span><span class="operator">/</span>显示库信息</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>selenium安装</li>
-</ol>
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=MDk1OTk0YzMzOGFhNGUyZjlhNjAxMzYzN2IzNjNkNzVfMkRIZFFFYVRJWkFPcFdjcFBjd0xBeG1OUVpQTXVQVFVfVG9rZW46Ym94Y253dTFYTnRmYzVXSkUxaXpvU0d4ZXljXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<ol>
-<li>浏览器驱动安装</li>
+<li><p>selenium安装</p>
+</li>
+<li><p>浏览器驱动安装</p>
+</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="http://chromedriver.storage.googleapis.com/index.html">http://chromedriver.storage.googleapis.com/index.html</a></p>
 <p>并放到python根目录下  注意下载的驱动器版本要和自己电脑浏览器版本一致</p>
-<p>暂时无法在文档外展示此内容</p>
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=MjI3NDU5ZjNjZGYyNzljNGQyMzNjZDUzOTVjNjZmMGFfQlVrS0N6Y3NPbnZYaTVzV3BPSm5qNnJwWGFGOE91ck5fVG9rZW46Ym94Y24xSk85Zjdoc2ZoRkVvMzJ1WTFWRWliXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
 <ol>
 <li>使用python打开网页</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">driver=webdriver.Chrome()</span><br><span class="line">driver.get(&quot;https://www.baidu.com&quot;)</span><br><span class="line">driver.find_element_by_id(&quot;kw&quot;).send_keys(&quot;selenium&quot;)</span><br><span class="line">driver.find_element_by_id(&quot;su&quot;).click()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://a2sr71wdj0.feishu.cn/space/api/box/stream/download/asynccode/?code=NjA3YmIwMjAxMzI4MjJmODRjNmEyOThkNWFlYjYzZWNfNU84eDlZTFlReTI5OFVaU3hlZWhxdlNKZXBUdmVySlBfVG9rZW46Ym94Y25FMjVkZzFidzNtWTJ6SndBSUl6UzZmXzE2NDgwMzQ2NTY6MTY0ODAzODI1Nl9WNA" alt="img"></p>
-<p>虽然提示方法过时了，但是改成新的会报错。</p>
 <h3 id="2-Webdriver-API"><a href="#2-Webdriver-API" class="headerlink" title="2.Webdriver API"></a>2.Webdriver API</h3><p><a target="_blank" rel="noopener" href="https://a2sr71wdj0.feishu.cn/docs/doccnzCA3jRJ1FhswabXt9pgwQd">Python+Selenium练习</a> </p>
 <p><a target="_blank" rel="noopener" href="https://a2sr71wdj0.feishu.cn/docs/doccnn6aR8WtNwHlquHZYwtgGCf#j8QnK5">Web基础</a> </p>
 <p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/webdriver/#locator-strategies">webdriver文档</a>  </p>
@@ -808,7 +1008,7 @@
 <li><p>清除操作   element.clear()     element表示的是元素对象. 将输入框里面的内容全部清除。</p>
 </li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="2-2浏览器操作"><a href="#2-2浏览器操作" class="headerlink" title="2.2浏览器操作"></a>2.2浏览器操作</h3><table>
+<h3 id="2-2浏览器操作"><a href="#2-2浏览器操作" class="headerlink" title="2.2浏览器操作"></a>2.2浏览器操作</h3><table>
 <thead>
 <tr>
 <th>driver.maximize_window() Set_window_size() set_window_position(x, y)</th>
@@ -1240,7 +1440,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
